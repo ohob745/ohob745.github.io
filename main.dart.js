@@ -37485,9 +37485,9 @@ ah4(){var s=0,r=A.t(t.z),q,p
 var $async$ah4=A.o(function(a,b){if(a===1)return A.p(b,r)
 while(true)switch(s){case 0:s=2
 return A.n($.aY8().Gt(0,".env"),$async$ah4)
-case 2:q=$.aY8().ga3W().i(0,"Url")
+case 2:q=$.aY8().ga3W().i(0,"SUPABASE_URL")
 q.toString
-p=$.aY8().ga3W().i(0,"AnonKey")
+p=$.aY8().ga3W().i(0,"SUPABASE_ANON_KEY")
 p.toString
 s=3
 return A.n(A.aFO(p,q),$async$ah4)
