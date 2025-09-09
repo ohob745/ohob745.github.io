@@ -37485,10 +37485,10 @@ var $async$ah4=A.o(function(a,b){if(a===1)return A.p(b,r)
 while(true)switch(s){case 0:s=2
 return A.n($.aY8().Gt(0,".env",!0),$async$ah4)
 case 2:q=$.aY8().ga3W().i(0,"SUPABASE_URL")
-if(q==null)q=""
+if(q==null)q="https://esjyjytiuyskoisnzqgg.supabase.co"
 p=$.aY8().ga3W().i(0,"SUPABASE_ANON_KEY")
 s=3
-return A.n(A.aFO(p==null?"":p,q),$async$ah4)
+return A.n(A.aFO(p==null?"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVzanlqeXRpdXlza29pc256cWdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxODk5MTksImV4cCI6MjA2NDc2NTkxOX0.7qss8VZ1C7M-MzE8ocnaCMf8RMOi13oLcNavmqEDPvM":p,q),$async$ah4)
 case 3:return A.q(null,r)}})
 return A.r($async$ah4,r)}},B={}
 var w=[A,J,B]
