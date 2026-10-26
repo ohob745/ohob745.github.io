@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>التسجيل للمشاركة في اختبار تطبيق نافع</title>
+<meta name="description" content="سجّل بريدك الإلكتروني للمشاركة في الاختبار المغلق لتطبيق نافع على Google Play.">
+<meta name="theme-color" content="#0E8F70">
+<meta name="color-scheme" content="light">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://naafi3-api.onrender.com http://127.0.0.1:8000 http://localhost:8000; base-uri 'none'; form-action 'none'; object-src 'none'">
+<link rel="icon" type="image/png" href="./icon-512.png">
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="./index.html">
+      <img src="./icon-512.png" alt="">
+      <span>
+        <span class="brand-name">نافع</span>
+        <span class="brand-tagline">اختبار التطبيق على Google Play</span>
+      </span>
+    </a>
+    <nav aria-label="روابط عامة">
+      <a class="btn btn-ghost btn-sm" href="./index.html">الصفحة الرئيسية</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <div class="container">
+    <section class="card card-narrow" aria-labelledby="page-title">
+
+      <div id="form-panel">
+        <h1 id="page-title">التسجيل للمشاركة في اختبار التطبيق</h1>
+        <p class="lead">
+          نستعد لإطلاق النسخة التجريبية من تطبيق نافع على Google Play. سجّل
+          بريدك الإلكتروني هنا، وسنراجع الطلبات ثم نرسل تعليمات المشاركة
+          ورابط الانضمام إلى من نختاره. التسجيل لا يعني أنك انضممت للاختبار بعد.
+        </p>
+
+        <div id="form-message" class="alert" aria-live="polite"></div>
+
+        <form id="register-form" novalidate>
+          <div class="field">
+            <label for="email">البريد الإلكتروني <span aria-hidden="true">*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              dir="ltr"
+              autocomplete="email"
+              inputmode="email"
+              maxlength="254"
+              required
+              aria-describedby="email-hint"
+              placeholder="name@example.com">
+            <span class="hint" id="email-hint">
+              استخدم بريدًا تفتحه فعليًا؛ إليه سيُرسل رابط الانضمام.
+              <span class="visually-hidden">هذا الحقل مطلوب.</span>
+            </span>
+          </div>
+
+          <div class="field">
+            <label for="tester-name">الاسم <span class="muted small">(اختياري)</span></label>
+            <input
+              type="text"
+              id="tester-name"
+              name="tester_name"
+              autocomplete="name"
+              maxlength="120"
+              aria-describedby="name-hint"
+              placeholder="الاسم الذي تحب أن نناديك به">
+            <span class="hint" id="name-hint">يساعدنا في تمييزك عند مراجعة الطلبات فقط.</span>
+          </div>
+
+          <div class="hp" aria-hidden="true">
+            <label for="website">اترك هذا الحقل فارغًا</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent">
+              أوافق على تخزين بريدك الإلكتروني (والاسم إن كتبته) لاستخدامه في
+              تنسيق المشاركة في اختبار التطبيق، وأعلم أن التسجيل لا يعني
+              الانضمام للاختبار حتى أستلم رابط الانضمام من Google Play.
+              <span class="visually-hidden">هذه الموافقة مطلوبة.</span>
+            </label>
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" id="submit-button" class="btn btn-primary">
+              <span class="spinner" id="submit-spinner" hidden aria-hidden="true"></span>
+              <span id="submit-label">التسجيل للاختبار</span>
+            </button>
+            <span class="muted small">
+              نستخدم بريدك لهذا الغرض فقط. راجع
+              <a href="./privacy-policy.html">سياسة الخصوصية</a>.
+            </span>
+          </div>
+        </form>
+      </div>
+
+      <div id="success-panel" class="success-panel" tabindex="-1" role="status" hidden>
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <h2>تم استلام طلبك</h2>
+        <p id="success-text">
+          تم تسجيل بريدك الإلكتروني بنجاح. ستصلك تعليمات المشاركة في الاختبار
+          عند تجهيز رابط الانضمام.
+        </p>
+        <p class="next-steps">
+          سنراجع الطلبات ونضيف البريد إلى قائمة المختبِرين في Google Play Console،
+          ثم نرسل رابط الانضمام الرسمي. حتى ذلك الحين لا يزال طلبك قيد المراجعة.
+        </p>
+        <p class="next-steps">
+          <a class="btn btn-ghost" href="./app.html">العودة إلى صفحة التطبيق</a>
+        </p>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<footer class="page-footer">
+  <nav aria-label="روابط التذييل">
+    <a href="./index.html">الصفحة الرئيسية</a>
+    <a href="./app.html">التطبيق</a>
+    <a href="./privacy-policy.html">سياسة الخصوصية</a>
+    <a href="./delete-account.html">حذف الحساب</a>
+  </nav>
+  <div>نافع &middot; التسجيل في اختبار Google Play</div>
+</footer>
+
+<script src="./js/api.js"></script>
+<script src="./js/registration.js"></script>
+</body>
+</html>
