@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>نافع | تطبيق القرآن الكريم والختمة الجماعية</title>
+  <meta name="description" content="تطبيق نافع للقرآن الكريم، الختمة الجماعية، الأذكار، المسابقات اليومية، والكتب الإسلامية. مجاني بالكامل بلا إعلانات.">
+  <meta property="og:title" content="نافع | تطبيق القرآن الكريم والختمة الجماعية">
+  <meta property="og:description" content="مصحف عثماني يعمل دون إنترنت، ختمة جماعية بين الأهل والأصدقاء، مسابقات يومية، تذكيرات، وكتب ودروس.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ohob745.github.io/naffi3/app.html">
+  <link rel="icon" type="image/png" href="../naffi3_app/store/icon-512.png">
+  <style>
+    :root {
+      --brand: #0E8F70;
+      --brand-dark: #0A6B53;
+      --ink: #1F2937;
+      --muted: #4B5563;
+      --line: #E5E7EB;
+      --bg: #F8FAF9;
+      --card: #FFFFFF;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, "Noto Naskh Arabic", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.9;
+    }
+    header {
+      background: radial-gradient(circle at top, #12b08a 0%, var(--brand-dark) 100%);
+      color: #fff;
+      text-align: center;
+      padding: clamp(40px, 8vw, 80px) 20px clamp(48px, 10vw, 90px);
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 -1px;
+      height: 60px;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .app-icon {
+      width: 92px;
+      height: 92px;
+      border-radius: 22px;
+      box-shadow: 0 40px 60px -40px rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    header h1 { margin: 0; font-size: clamp(30px, 5vw, 48px); }
+    header p {
+      margin: 0;
+      max-width: 680px;
+      font-size: clamp(16px, 2vw, 19px);
+      opacity: 0.95;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 10px;
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+    .btn-play {
+      background: #fff;
+      color: var(--brand-dark);
+      box-shadow: 0 30px 60px -30px rgba(15, 23, 42, 0.8);
+    }
+    .btn:hover { transform: translateY(-4px); }
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(36px, 8vw, 72px);
+      padding: clamp(20px, 6vw, 60px) 0 clamp(60px, 10vw, 100px);
+    }
+    .section-head {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: clamp(20px, 5vw, 36px);
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(24px, 4vw, 36px);
+    }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 2vw, 17px);
+    }
+    .grid-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: clamp(14px, 3vw, 20px);
+    }
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: clamp(18px, 3vw, 24px);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: 0 60px 80px -70px rgba(15, 23, 42, 0.9);
+    }
+    .feature-card span { font-size: 26px; }
+    .feature-card h3 { margin: 0; font-size: clamp(17px, 2.2vw, 20px); }
+    .feature-card p { margin: 0; color: var(--muted); }
+    .screens-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: clamp(12px, 2vw, 16px);
+    }
+    .screen {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 60px 80px -70px rgba(15, 23, 42, 0.95);
+      background: #000;
+    }
+    .screen img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 9 / 16;
+      object-fit: cover;
+    }
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    .link-pill {
+      display: inline-flex;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      color: var(--brand-dark);
+      background: var(--card);
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: clamp(20px, 5vw, 30px) 20px;
+      text-align: center;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    .footer-links a {
+      color: var(--brand-dark);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap hero">
+      <img class="app-icon" src="../naffi3_app/store/icon-512.png" alt="أيقونة تطبيق نافع">
+      <h1>نافع</h1>
+      <p>مصحف عثماني يعمل دون إنترنت، ختمة جماعية، آية وحديث اليوم، مسابقات يومية، تذكيرات، وكتب ودروس — مجاني بالكامل بلا إعلانات وبلا اشتراكات.</p>
+      <div class="cta-group" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:14px"><a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.naafi3.app" target="_blank" rel="noopener">
+        <svg width="22" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" fill="currentColor"/>
+        </svg>
+        حمل التطبيق من Google Play
+      </a>
+      <a class="btn" href="https://play.google.com/apps/testing/com.naafi3.app" target="_blank" rel="noopener" style="background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.7);padding:14px 26px;border-radius:999px;text-decoration:none;font-weight:600">الانضمام لاختبار التطبيق</a></div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap">
+      <div class="section-head">
+        <h2>مزايا التطبيق</h2>
+        <p>كل ما تحتاجه لقراءة القرآن ومواصلة الذكر في مكان واحد</p>
+      </div>
+      <div class="grid-features">
+        <article class="feature-card">
+          <span>📖</span>
+          <h3>مصحف عثماني دون إنترنت</h3>
+          <p>القرآن كاملًا بخط عثماني واضح، تصفح عمودي، تنقل بالسور والأجزاء والأحزاب، وحفظ لآخر موضع قراءة.</p>
+        </article>
+        <article class="feature-card">
+          <span>🤝</span>
+          <h3>ختمة جماعية</h3>
+          <p>أنشئ ختمة مع العائلة والأصدقاء وشارك رمز الانضمام، وشارك الأجزاء، وتابع التقدم لحظيًا.</p>
+        </article>
+        <article class="feature-card">
+          <span>📚</span>
+          <h3>آية وحديث اليوم</h3>
+          <p>آية اليوم وحديث اليوم، بالإضافة إلى كتب ودروس بصيغة PDF وقوائم يوتيوب مختارة.</p>
+        </article>
+        <article class="feature-card">
+          <span>📝</span>
+          <h3>مسابقات يومية</h3>
+          <p>سؤال جديد كل يوم مع نتيجة فورية، لتثبيت ما تحفظه ومراجعته يوميًا.</p>
+        </article>
+        <article class="feature-card">
+          <span>🔔</span>
+          <h3>تذكيرات ومناسبات</h3>
+          <p>تذكير عند الفجر والمناسبات الإسلامية، والإشعارات تعمل محليًا على جهازك فقط.</p>
+        </article>
+        <article class="feature-card">
+          <span>🔒</span>
+          <h3>مجاني وبلا إعلانات</h3>
+          <p>مجاني بالكامل، بلا إعلانات، بلا تتبع، بلا تحليلات، ويمكنك حذف حسابك وبياناتك نهائيًا.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="section-head">
+        <h2>لقطات من التطبيق</h2>
+        <p>واجهة بسيطة وواضحة موجهة للقراءة والذكر</p>
+      </div>
+      <div class="screens-grid">
+        <figure class="screen"><img src="../screenshots/01_home.png" alt="الرئيسية"></figure>
+        <figure class="screen"><img src="../screenshots/02_quran.png" alt="المصحف"></figure>
+        <figure class="screen"><img src="../screenshots/03_ayah.png" alt="آية اليوم"></figure>
+        <figure class="screen"><img src="../screenshots/07_quiz.png" alt="المسابقات"></figure>
+        <figure class="screen"><img src="../screenshots/09_khatma_detail.png" alt="الختمة الجماعية"></figure>
+        <figure class="screen"><img src="../screenshots/10_today.png" alt="اليوم والمناسبات"></figure>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="section-head">
+        <h2>روابط سريعة</h2>
+        <p>سياسة الخصوصية، حذف الحساب، والتواصل</p>
+      </div>
+      <div class="links">
+        <a class="link-pill" href="./privacy-policy.html">سياسة الخصوصية</a>
+        <a class="link-pill" href="./delete-account.html">حذف الحساب</a>
+        <a class="link-pill" href="./index.html">الصفحة الرئيسية</a>
+        <a class="link-pill" href="mailto:abd.w77792@gmail.com">التواصل عبر البريد</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>© ٢٠٢٦ تطبيق نافع | Naafi3</div>
+      <div class="footer-links">
+        <a href="https://play.google.com/apps/testing/com.naafi3.app" target="_blank" rel="noopener">Google Play (اختبار)</a>
+        <a href="./privacy-policy.html">سياسة الخصوصية</a>
+        <a href="./delete-account.html">حذف الحساب</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
