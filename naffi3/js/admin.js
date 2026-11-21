@@ -19,6 +19,11 @@
     withdrawn: "انسحب",
   };
 
+  var STORE_LABELS = {
+    google_play: "Google Play",
+    huawei: "متجر هواوي",
+  };
+
   var STAT_LABELS = [
     ["total", "الإجمالي"],
     ["pending", "بانتظار المراجعة"],
@@ -33,6 +38,7 @@
     profile: null,
     q: "",
     status: "",
+    store: "",
     offset: 0,
     total: 0,
     items: [],
@@ -59,6 +65,7 @@
   var searchInput = $("search-input");
   var searchForm = $("search-form");
   var statusFilter = $("status-filter");
+  var storeFilter = $("store-filter");
   var refreshButton = $("refresh-button");
   var tableBody = $("testers-body");
   var tableCaption = $("table-caption");
@@ -185,12 +192,14 @@
     state.items = [];
     state.q = "";
     state.status = "";
+    state.store = "";
     state.offset = 0;
     state.total = 0;
     state.editing = null;
     state.deleting = null;
     searchInput.value = "";
     statusFilter.value = "";
+    storeFilter.value = "";
     tableBody.textContent = "";
     statsGrid.textContent = "";
     alertBox(dashboardMessage, "");
@@ -356,7 +365,7 @@
       var empty = document.createElement("tr");
       empty.className = "empty-row";
       var cell = document.createElement("td");
-      cell.colSpan = 6;
+      cell.colSpan = 7;
       cell.textContent = state.q || state.status
         ? "لا توجد نتائج مطابقة للبحث أو التصفية."
         : "لا توجد تسجيلات بعد.";
@@ -374,6 +383,9 @@
 
       var name = document.createElement("td");
       name.textContent = item.tester_name || "—";
+
+      var store = document.createElement("td");
+      store.textContent = STORE_LABELS[item.store] || item.store || "—";
 
       var date = document.createElement("td");
       date.textContent = formatDate(item.registration_date);
@@ -407,6 +419,7 @@
 
       row.appendChild(email);
       row.appendChild(name);
+      row.appendChild(store);
       row.appendChild(date);
       row.appendChild(status);
       row.appendChild(notes);
@@ -430,6 +443,9 @@
     var bits = ["التوقيت المحلي لجهازك"];
     if (state.status) {
       bits.push("الحالة: " + (STATUS_LABELS[state.status] || state.status));
+    }
+    if (state.store) {
+      bits.push("المتجر: " + (STORE_LABELS[state.store] || state.store));
     }
     if (state.q) {
       bits.push("بحث: «" + state.q + "»");
@@ -470,6 +486,9 @@
     }
     if (state.status) {
       params.set("status", state.status);
+    }
+    if (state.store) {
+      params.set("store", state.store);
     }
 
     var data = await api("/admin/testers?" + params.toString());
@@ -538,6 +557,12 @@
     refreshAll();
   });
 
+  storeFilter.addEventListener("change", function () {
+    state.store = storeFilter.value;
+    state.offset = 0;
+    refreshAll();
+  });
+
   prevButton.addEventListener("click", function () {
     state.offset = Math.max(0, state.offset - PAGE_SIZE);
     refreshAll();
@@ -551,9 +576,15 @@
   /* --------------------------------------------------------------- exporting */
 
   function exportPath(base) {
-    return state.status
-      ? base + "?status=" + encodeURIComponent(state.status)
-      : base;
+    var params = new URLSearchParams();
+    if (state.status) {
+      params.set("status", state.status);
+    }
+    if (state.store) {
+      params.set("store", state.store);
+    }
+    var query = params.toString();
+    return query ? base + "?" + query : base;
   }
 
   async function download(button, base, fallbackName) {
@@ -569,8 +600,8 @@
       );
       alertBox(
         dashboardMessage,
-        state.status
-          ? "تم تنزيل ملف CSV للحالة المختارة."
+        state.status || state.store
+          ? "تم تنزيل ملف CSV للتصفية المختارة."
           : "تم تنزيل ملف CSV لكل التسجيلات.",
         "success"
       );

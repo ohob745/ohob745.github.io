@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>التسجيل للمشاركة في اختبار تطبيق نافع</title>
-<meta name="description" content="سجّل بريدك الإلكتروني للمشاركة في الاختبار المغلق لتطبيق نافع على Google Play.">
+<meta name="description" content="سجّل بريدك الإلكتروني للمشاركة في الاختبار المغلق لتطبيق نافع على Google Play أو متجر هواوي.">
 <meta name="theme-color" content="#0E8F70">
 <meta name="color-scheme" content="light">
 <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -20,7 +20,7 @@
       <img src="./icon-512.png" alt="">
       <span>
         <span class="brand-name">نافع</span>
-        <span class="brand-tagline">اختبار التطبيق على Google Play</span>
+        <span class="brand-tagline">اختبار التطبيق على المتجر الذي تختاره</span>
       </span>
     </a>
     <nav aria-label="روابط عامة">
@@ -36,9 +36,10 @@
       <div id="form-panel">
         <h1 id="page-title">التسجيل للمشاركة في اختبار التطبيق</h1>
         <p class="lead">
-          نستعد لإطلاق النسخة التجريبية من تطبيق نافع على Google Play. سجّل
-          بريدك الإلكتروني هنا، وسنراجع الطلبات ثم نرسل تعليمات المشاركة
-          ورابط الانضمام إلى من نختاره. التسجيل لا يعني أنك انضممت للاختبار بعد.
+          نستعد لإطلاق النسخة التجريبية من تطبيق نافع. اختر المتجر الذي تريد
+          اختباره، وسجّل بريدك الإلكتروني هنا. سنراجع الطلبات ثم نرسل تعليمات
+          المشاركة ورابط الانضمام إلى من نختاره. التسجيل لا يعني أنك انضممت
+          للاختبار بعد.
         </p>
 
         <div id="form-message" class="alert" aria-live="polite"></div>
@@ -63,6 +64,24 @@
             </span>
           </div>
 
+          <fieldset class="field" aria-describedby="store-hint">
+            <legend>المتجر <span aria-hidden="true">*</span></legend>
+            <div class="choice-row" role="radiogroup" aria-label="المتجر">
+              <label>
+                <input type="radio" name="store" value="google_play" required>
+                <span>Google Play</span>
+              </label>
+              <label>
+                <input type="radio" name="store" value="huawei">
+                <span>متجر هواوي</span>
+              </label>
+            </div>
+            <span class="hint" id="store-hint">
+              اختر المتجر الذي تريد المشاركة في اختباره. سنرسل تعليمات الانضمام
+              حسب اختيارك. <span class="visually-hidden">هذا الحقل مطلوب.</span>
+            </span>
+          </fieldset>
+
           <div class="field">
             <label for="tester-name">الاسم <span class="muted small">(اختياري)</span></label>
             <input
@@ -86,7 +105,7 @@
             <label for="consent">
               أوافق على تخزين بريدك الإلكتروني (والاسم إن كتبته) لاستخدامه في
               تنسيق المشاركة في اختبار التطبيق، وأعلم أن التسجيل لا يعني
-              الانضمام للاختبار حتى أستلم رابط الانضمام من Google Play.
+              الانضمام للاختبار حتى أستلم رابط الانضمام من المتجر الذي اخترته.
               <span class="visually-hidden">هذه الموافقة مطلوبة.</span>
             </label>
           </div>
@@ -112,7 +131,7 @@
           عند تجهيز رابط الانضمام.
         </p>
         <p class="next-steps">
-          سنراجع الطلبات ونضيف البريد إلى قائمة المختبِرين في Google Play Console،
+          سنراجع الطلبات ونضيف البريد إلى قائمة المختبِرين في المتجر الذي اخترته،
           ثم نرسل رابط الانضمام الرسمي. حتى ذلك الحين لا يزال طلبك قيد المراجعة.
         </p>
         <p class="next-steps">
@@ -132,7 +151,7 @@
     <a href="./delete-account.html">حذف الحساب</a>
     <a href="./admin.html" rel="nofollow">لوحة الإدارة</a>
   </nav>
-  <div>نافع &middot; التسجيل في اختبار Google Play</div>
+  <div>نافع &middot; التسجيل في اختبار التطبيق</div>
 </footer>
 
 <script src="./js/api.js"></script>

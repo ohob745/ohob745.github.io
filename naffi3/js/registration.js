@@ -4,6 +4,7 @@
 
   var form = document.getElementById("register-form");
   var emailInput = document.getElementById("email");
+  var storeInputs = form.querySelectorAll('input[name="store"]');
   var consentInput = document.getElementById("consent");
   var submitButton = document.getElementById("submit-button");
   var submitLabel = document.getElementById("submit-label");
@@ -16,6 +17,23 @@
   var SUCCESS_FALLBACK =
     "تم تسجيل بريدك الإلكتروني بنجاح. ستصلك تعليمات المشاركة في الاختبار عند تجهيز رابط الانضمام.";
 
+  function selectedStore() {
+    for (var i = 0; i < storeInputs.length; i += 1) {
+      if (storeInputs[i].checked) {
+        return storeInputs[i].value;
+      }
+    }
+    return null;
+  }
+
+  storeInputs.forEach(function (input) {
+    input.addEventListener("change", function () {
+      storeInputs.forEach(function (item) {
+        item.setCustomValidity("");
+      });
+    });
+  });
+
   // The browser's own validation bubble follows the browser language. Replace
   // it with Arabic text (and reset it once the value is valid again).
   function validateForm() {
@@ -26,6 +44,12 @@
           ? "أدخل بريدًا إلكترونيًا صحيحًا مثل name@example.com."
           : ""
     );
+    storeInputs.forEach(function (input) {
+      input.setCustomValidity("");
+    });
+    if (!selectedStore() && storeInputs.length) {
+      storeInputs[0].setCustomValidity("اختر المتجر الذي تريد اختباره.");
+    }
     consentInput.setCustomValidity(
       consentInput.checked ? "" : "يجب الموافقة على تخزين البريد قبل التسجيل."
     );
@@ -69,7 +93,7 @@
       );
     }
     if (error.status === 422) {
-      return "تحقق من صحة البريد الإلكتروني ثم أعد المحاولة.";
+      return "تحقق من صحة البريد الإلكتروني واختيار المتجر ثم أعد المحاولة.";
     }
     if (error.status === 429) {
       return error.message || "عدد المحاولات كبير جدًا. انتظر قليلًا ثم أعد المحاولة.";
@@ -94,6 +118,7 @@
 
     var payload = {
       email: document.getElementById("email").value.trim(),
+      store: selectedStore(),
       tester_name: document.getElementById("tester-name").value.trim() || null,
       consent: document.getElementById("consent").checked,
       website: document.getElementById("website").value,

@@ -87,7 +87,7 @@
           <div>
             <h1 id="dash-title">المختبِرون المسجّلون</h1>
             <p class="lead">
-              راجع الطلبات، وحدّث الحالة بعد إضافة البريد في Google Play Console
+              راجع الطلبات، وحدّث الحالة بعد إضافة البريد في لوحة المتجر الذي اختاره
               وإرسال رابط الانضمام.
             </p>
           </div>
@@ -130,6 +130,15 @@
             </select>
           </div>
 
+          <div class="field">
+            <label for="store-filter">المتجر</label>
+            <select id="store-filter">
+              <option value="">كل المتاجر</option>
+              <option value="google_play">Google Play</option>
+              <option value="huawei">متجر هواوي</option>
+            </select>
+          </div>
+
           <div class="actions">
             <button type="submit" class="btn btn-primary btn-sm">بحث</button>
             <button type="button" id="refresh-button" class="btn btn-ghost btn-sm">
@@ -151,6 +160,7 @@
               <tr>
                 <th scope="col">البريد الإلكتروني</th>
                 <th scope="col">الاسم</th>
+                <th scope="col">المتجر</th>
                 <th scope="col">تاريخ التسجيل</th>
                 <th scope="col">الحالة</th>
                 <th scope="col">ملاحظات</th>
@@ -175,9 +185,10 @@
 
         <p class="small muted note">
           ملف «تصدير البُرد» يحتوي البريد الإلكتروني فقط، وهو المناسب للصق في
-          Google Play Console. «التصدير التفصيلي» يضيف الاسم وتاريخ التسجيل
-          والحالة. التصدير يتبع الحالة المختارة في التصفية، ولا يتبع البحث.
-          إضافة البريد إلى Play Console وإرسال رابط الانضمام خطوات يدوية.
+          لوحة المتجر المختارة. «التصدير التفصيلي» يضيف المتجر والاسم وتاريخ
+          التسجيل والحالة. التصدير يتبع الحالة والمتجر المختارين في التصفية،
+          ولا يتبع البحث. إضافة البريد إلى لوحة المتجر وإرسال رابط الانضمام
+          خطوات يدوية.
         </p>
       </div>
 
