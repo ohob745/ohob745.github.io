@@ -103,6 +103,32 @@
 
         <div id="dashboard-message" class="alert" aria-live="polite"></div>
 
+        <details id="invite-settings" class="invite-settings">
+          <summary>روابط الدعوة للمتاجر</summary>
+          <div class="toolbar">
+            <div class="field grow">
+              <label for="invite-google-play">رابط دعوة Google Play</label>
+              <input
+                type="url"
+                id="invite-google-play"
+                placeholder="https://play.google.com/apps/testing/…"
+                spellcheck="false">
+            </div>
+            <div class="field grow">
+              <label for="invite-huawei">رابط دعوة متجر هواوي</label>
+              <input
+                type="url"
+                id="invite-huawei"
+                placeholder="رابط دعوة الاختبار في AppGallery"
+                spellcheck="false">
+            </div>
+          </div>
+          <span class="hint">
+            تُحفظ الروابط في هذا المتصفح فقط. زر «رسالة القبول» يضع الرابط المناسب
+            في الرسالة تلقائيًا حسب المتجر الذي اختاره المختبر.
+          </span>
+        </details>
+
         <form id="search-form" class="toolbar" role="search">
           <div class="field grow">
             <label for="search-input">بحث</label>

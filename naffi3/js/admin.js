@@ -24,6 +24,11 @@
     huawei: "متجر هواوي",
   };
 
+  var INVITE_KEYS = {
+    google_play: "naafi3.admin.invite.google_play",
+    huawei: "naafi3.admin.invite.huawei",
+  };
+
   var STAT_LABELS = [
     ["total", "الإجمالي"],
     ["pending", "بانتظار المراجعة"],
@@ -61,6 +66,11 @@
   var whoLabel = $("who");
   var logoutButton = $("logout-button");
   var dashboardMessage = $("dashboard-message");
+  var inviteSettings = $("invite-settings");
+  var inviteInputs = {
+    google_play: $("invite-google-play"),
+    huawei: $("invite-huawei"),
+  };
   var statsGrid = $("stats-grid");
   var searchInput = $("search-input");
   var searchForm = $("search-form");
@@ -96,6 +106,91 @@
     } else {
       element.removeAttribute("role");
     }
+  }
+
+  function inviteLink(store) {
+    try {
+      return window.localStorage.getItem(INVITE_KEYS[store] || "") || "";
+    } catch (error) {
+      return "";
+    }
+  }
+
+  function saveInviteInput(store) {
+    var input = inviteInputs[store];
+    if (!input) {
+      return;
+    }
+    try {
+      window.localStorage.setItem(INVITE_KEYS[store], input.value.trim());
+      alertBox(dashboardMessage, "تم حفظ رابط الدعوة في هذا المتصفح.", "success");
+    } catch (error) {
+      alertBox(dashboardMessage, "تعذر حفظ الرابط في هذا المتصفح.", "error");
+    }
+  }
+
+  function restoreInviteInputs() {
+    Object.keys(inviteInputs).forEach(function (store) {
+      var input = inviteInputs[store];
+      if (!input) {
+        return;
+      }
+      input.value = inviteLink(store);
+      input.addEventListener("change", function () {
+        saveInviteInput(store);
+      });
+    });
+  }
+
+  function acceptanceMailto(item) {
+    var storeLabel = STORE_LABELS[item.store] || "المتجر";
+    var name = (item.tester_name || "").trim() || "المختبر";
+    var subject = "تم قبولك في اختبار تطبيق نافع — " + storeLabel;
+    var body = [
+      "السلام عليكم " + name + "،",
+      "",
+      "شكراً لتسجيلك كمختبر لتطبيق نافع. تمت الموافقة على طلبك، وسيتم إضافتك إلى قائمة المختبرين في " + storeLabel + ".",
+      "",
+      "رابط الانضمام:",
+      inviteLink(item.store),
+      "",
+      "خطوات المشاركة:",
+      "1. افتح الرابط بنفس الحساب الذي سجّلت به في المتجر.",
+      "2. اضغط «الانضمام إلى الاختبار» أو Become a tester.",
+      "3. ارجع إلى صفحة التطبيق في المتجر وثبّت النسخة التجريبية أو حدّثها.",
+      "4. قد يستغرق ظهور التطبيق أو التحديث دقائق قليلة بعد قبول الدعوة.",
+      "",
+      "إذا واجهت أي مشكلة، أرسل وصفها بالرد على هذه الرسالة أو من داخل التطبيق.",
+      "لن نطلب منك كلمة مرور أو بيانات حساب أبداً.",
+      "",
+      "شكراً لمساعدتنا في تحسين نافع.",
+      "فريق نافع",
+    ].join("\n");
+
+    return (
+      "mailto:" +
+      encodeURIComponent(item.email) +
+      "?subject=" +
+      encodeURIComponent(subject) +
+      "&body=" +
+      encodeURIComponent(body)
+    );
+  }
+
+  function openAcceptance(item) {
+    if (!inviteLink(item.store)) {
+      var label = STORE_LABELS[item.store] || "المتجر";
+      alertBox(dashboardMessage, "أضف رابط دعوة " + label + " أولاً من «روابط الدعوة للمتاجر».", "error");
+      if (inviteSettings) {
+        inviteSettings.open = true;
+      }
+      var input = inviteInputs[item.store];
+      if (input) {
+        input.focus();
+      }
+      return;
+    }
+    window.location.href = acceptanceMailto(item);
   }
 
   function formatDate(value) {
@@ -405,6 +500,11 @@
       var actions = document.createElement("td");
       var group = document.createElement("div");
       group.className = "row-actions";
+      group.appendChild(
+        actionButton("رسالة القبول", "btn-ghost", function () {
+          openAcceptance(item);
+        })
+      );
       group.appendChild(
         actionButton("تعديل", "btn-ghost", function () {
           openEdit(item);
@@ -755,5 +855,6 @@
 
   /* ------------------------------------------------------------------ start */
 
+  restoreInviteInputs();
   restoreSession();
 })();

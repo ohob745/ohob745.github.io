@@ -534,6 +534,28 @@ fieldset.field legend {
   gap: 8px;
 }
 
+.invite-settings {
+  margin-bottom: 16px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: var(--card);
+}
+
+.invite-settings summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--brand-dark);
+}
+
+.invite-settings[open] summary {
+  margin-bottom: 12px;
+}
+
+.invite-settings .toolbar {
+  margin-bottom: 0;
+}
+
 .table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);
